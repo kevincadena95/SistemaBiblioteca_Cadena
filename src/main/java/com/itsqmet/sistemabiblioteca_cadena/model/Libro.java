@@ -6,14 +6,13 @@ import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "libros")
-
 public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "El campo titulo no puede estar vacio")
-    @Size(min = 2, max = 15, message = ("El titulo no cumple con el rango de caracteres de 2-15"))
+    @Size(min = 2, max = 100, message = ("El titulo no cumple con el rango de caracteres de 2-15"))
     @Column(nullable = false)
     private String titulo;
 
