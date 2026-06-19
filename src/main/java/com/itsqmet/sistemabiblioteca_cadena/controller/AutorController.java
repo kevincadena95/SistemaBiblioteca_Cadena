@@ -1,8 +1,7 @@
 package com.itsqmet.sistemabiblioteca_cadena.controller;
 
-import com.itsqmet.sistemabiblioteca_cadena.model.Libro;
-import com.itsqmet.sistemabiblioteca_cadena.model.LibroRepository;
-import com.itsqmet.sistemabiblioteca_cadena.service.LibroService;
+import com.itsqmet.sistemabiblioteca_cadena.model.Autor;
+import com.itsqmet.sistemabiblioteca_cadena.service.AutorService;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,29 +15,30 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/libros")
+@RequestMapping("/api/autores")
 @CrossOrigin("*")
-public class LibroController {
+
+public class AutorController {
 
     @Autowired
-    private LibroService libroService;
+    private AutorService autorService;
 
     @GetMapping
-    public ResponseEntity<List<Libro>> obtenerTodos(){
-        List<Libro> libros = libroService.obtenerTodo();
-        return ResponseEntity.ok(libros);
+    public ResponseEntity<List<Autor>> obtenerTodos() {
+        List<Autor> autores = autorService.obtenerTodo();
+        return ResponseEntity.ok(autores);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> obtenerPorId(@PathVariable Long id) {
-        return libroService.buscarporId(id)
-                .map(producto -> ResponseEntity.ok((Object) producto))
+        return autorService.buscarporId(id)
+                .map(autor -> ResponseEntity.ok((Object) autor))
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body(Map.of("error", "Libro con id " + id + " no encontrado")));
+                        .body(Map.of("error", "Autor con id " + id + " no encontrado")));
     }
 
     @PostMapping
-    public ResponseEntity<?> crear(@Valid @RequestBody Libro libro, BindingResult result) {
+    public ResponseEntity<?> crear(@Valid @RequestBody Autor autor, BindingResult result) {
 
         if (result.hasErrors()) {
             Map<String, String> errores = new HashMap<>();
@@ -48,22 +48,22 @@ public class LibroController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errores);
         }
 
-        Libro nuevo = libroService.crearlibro(libro);
+        Autor nuevo = autorService.crearAutor(autor);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevo);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id) {
-        if (libroService.eliminar(id)) {
-            return ResponseEntity.ok(Map.of("mensaje", "Libro eliminado correctamente")); // 200
+        if (autorService.eliminar(id)) {
+            return ResponseEntity.ok(Map.of("mensaje", "Autor eliminado correctamente"));
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(Map.of("error", "Libro con id " + id + " no encontrado"));
+                .body(Map.of("error", "Autor con id " + id + " no encontrado"));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> actualizar( @PathVariable Long id, @Valid @RequestBody Libro libro,
-                                         BindingResult result) {
+    public ResponseEntity<?> actualizar(@PathVariable Long id, @Valid @RequestBody Autor autor,
+                                        BindingResult result) {
 
         if (result.hasErrors()) {
             Map<String, String> errores = new HashMap<>();
@@ -73,12 +73,9 @@ public class LibroController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errores);
         }
 
-        return libroService.actualizar(id, libro)
+        return autorService.actualizar(id, autor)
                 .map(actualizado -> ResponseEntity.ok((Object) actualizado))
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body(Map.of("error", "Libro con id " + id + " no encontrado")));
+                        .body(Map.of("error", "Autor con id " + id + " no encontrado")));
     }
-
 }
-
-
