@@ -22,6 +22,10 @@ public class Libro {
     @Size(max = 500, message = "La sinopsis no puede superar 500 caracteres")
     private String sinopsis;
 
+    @NotBlank(message = "El campo autor no puede estar vacio")
+    @Size(min = 2, max = 25, message = ("El autor no cumple con el rango de caracteres de 2-25"))
+    private String autor;
+
     @NotBlank(message = "La fecha de publicacion es obligatoria")
     @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "La fecha debe tener el formato yyyy-MM-dd")
     private String fechaPublicacion;
@@ -38,11 +42,12 @@ public class Libro {
     public Libro() {
     }
 
-    public Libro(Long id, String titulo, String isbn, String sinopsis, String fechaPublicacion, Double precio, Integer stock) {
+    public Libro(Long id, String titulo, String isbn, String sinopsis, String autor, String fechaPublicacion, Double precio, Integer stock) {
         this.id = id;
         this.titulo = titulo;
         this.isbn = isbn;
         this.sinopsis = sinopsis;
+        this.autor = autor;
         this.fechaPublicacion = fechaPublicacion;
         this.precio = precio;
         this.stock = stock;
@@ -78,6 +83,14 @@ public class Libro {
 
     public void setSinopsis(String sinopsis) {
         this.sinopsis = sinopsis;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
     public String getFechaPublicacion() {
