@@ -1,7 +1,6 @@
 package com.itsqmet.sistemabiblioteca_cadena.controller;
 
 import com.itsqmet.sistemabiblioteca_cadena.model.Libro;
-import com.itsqmet.sistemabiblioteca_cadena.model.LibroRepository;
 import com.itsqmet.sistemabiblioteca_cadena.service.LibroService;
 
 import jakarta.validation.Valid;

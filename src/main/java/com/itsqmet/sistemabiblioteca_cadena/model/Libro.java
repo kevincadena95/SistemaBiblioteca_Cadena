@@ -1,5 +1,6 @@
 package com.itsqmet.sistemabiblioteca_cadena.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -39,6 +40,12 @@ public class Libro {
     @Min(value = 0, message = "El stock no puede ser negativo")
     private Integer stock;
 
+    @ManyToOne
+    @JoinColumn(name = "editorial_id")
+    @JsonBackReference("editorial-libros")
+    private Editorial editorial;
+
+//hola
     public Libro() {
     }
 

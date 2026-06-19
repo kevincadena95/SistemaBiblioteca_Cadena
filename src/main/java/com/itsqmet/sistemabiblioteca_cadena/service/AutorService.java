@@ -1,9 +1,8 @@
 package com.itsqmet.sistemabiblioteca_cadena.service;
 
 import com.itsqmet.sistemabiblioteca_cadena.model.Autor;
-import com.itsqmet.sistemabiblioteca_cadena.model.AutorRepository;
+import com.itsqmet.sistemabiblioteca_cadena.repository.AutorRepository;
 
-import org.hibernate.dialect.unique.CreateTableUniqueDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

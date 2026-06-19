@@ -1,9 +1,8 @@
 package com.itsqmet.sistemabiblioteca_cadena.service;
 
 import com.itsqmet.sistemabiblioteca_cadena.model.Libro;
-import com.itsqmet.sistemabiblioteca_cadena.model.LibroRepository;
+import com.itsqmet.sistemabiblioteca_cadena.repository.LibroRepository;
 
-import org.hibernate.dialect.unique.CreateTableUniqueDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +41,7 @@ public class LibroService {
             libro.setIsbn(libroActualizado.getIsbn());
             libro.setSinopsis(libroActualizado.getSinopsis());
             libro.setFechaPublicacion(libroActualizado.getFechaPublicacion());
+            libro.setAutor(libroActualizado.getAutor());
             libro.setPrecio(libroActualizado.getPrecio());
             libro.setStock(libroActualizado.getStock());
 

@@ -1,7 +1,7 @@
 package com.itsqmet.sistemabiblioteca_cadena.service;
 
 import com.itsqmet.sistemabiblioteca_cadena.model.Editorial;
-import com.itsqmet.sistemabiblioteca_cadena.model.EditorialRepository;
+import com.itsqmet.sistemabiblioteca_cadena.repository.EditorialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
