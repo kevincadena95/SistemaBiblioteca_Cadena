@@ -26,8 +26,8 @@ public class Editorial {
     @Size(min = 5, max = 100, message = ("La direccion no cumple con el rango de caracteres de 5-100"))
     private String direccion;
 
-    @NotBlank(message = "El campo telefono de contacto no puede estar vacio")
-    @Size(max = 15, message = ("El telefono de contacto no cumple con el rango de caracteres de 7-20"))
+    @NotBlank(message = "El campo teléfono de contacto es obligatorio")
+    @Pattern(regexp = "\\d{9,10}", message = "El teléfono de contacto debe tener entre 9 y 10 dígitos")
     private String telefonoContacto;
 
     @NotBlank(message = "El campo correo no puede estar vacio")

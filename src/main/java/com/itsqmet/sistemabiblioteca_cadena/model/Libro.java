@@ -22,10 +22,9 @@ public class Libro {
     @Size(max = 500, message = "La sinopsis no puede superar 500 caracteres")
     private String sinopsis;
 
-    @NotBlank(message = "El campo año no puede estar vacio")
-    @Min(value = 0, message = "El año no puede ser negativo")
-    @Max(value = 2026, message = "El año no puede ser mayor al año actual")
-    private Integer anioPublicacion;
+    @NotBlank(message = "La fecha de publicacion es obligatoria")
+    @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "La fecha debe tener el formato yyyy-MM-dd")
+    private String fechaPublicacion;
 
     @NotNull(message = "El precio es obligatorio")
     @Min(value = 0, message = "El precio no puede ser negativo")
@@ -39,12 +38,12 @@ public class Libro {
     public Libro() {
     }
 
-    public Libro(Long id, String titulo, String isbn, String sinopsis, Integer anioPublicacion, Double precio, Integer stock) {
+    public Libro(Long id, String titulo, String isbn, String sinopsis, String fechaPublicacion, Double precio, Integer stock) {
         this.id = id;
         this.titulo = titulo;
         this.isbn = isbn;
         this.sinopsis = sinopsis;
-        this.anioPublicacion = anioPublicacion;
+        this.fechaPublicacion = fechaPublicacion;
         this.precio = precio;
         this.stock = stock;
     }
@@ -81,13 +80,15 @@ public class Libro {
         this.sinopsis = sinopsis;
     }
 
-    public Integer getAnioPublicacion() {
-        return anioPublicacion;
+    public String getFechaPublicacion() {
+        return fechaPublicacion;
     }
 
-    public void setAnioPublicacion(Integer anioPublicacion) {
-        this.anioPublicacion = anioPublicacion;
+    public void setFechaPublicacion(String fechaPublicacion) {
+        this.fechaPublicacion = fechaPublicacion;
     }
+
+
 
     public Double getPrecio() {
         return precio;
