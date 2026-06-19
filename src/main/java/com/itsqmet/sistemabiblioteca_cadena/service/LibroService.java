@@ -42,6 +42,7 @@ public class LibroService {
             libro.setIsbn(libroActualizado.getIsbn());
             libro.setSinopsis(libroActualizado.getSinopsis());
             libro.setFechaPublicacion(libroActualizado.getFechaPublicacion());
+            libro.setAutor(libroActualizado.getAutor());
             libro.setPrecio(libroActualizado.getPrecio());
             libro.setStock(libroActualizado.getStock());
 
