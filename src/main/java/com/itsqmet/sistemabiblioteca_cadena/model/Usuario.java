@@ -1,5 +1,6 @@
 package com.itsqmet.sistemabiblioteca_cadena.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -34,6 +35,10 @@ public class Usuario {
     @NotBlank(message = "La fecha de registro es obligatoria")
     @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "La fecha debe tener el formato yyyy-MM-dd")
     private String fechaRegistro;
+
+    @OneToOne(mappedBy = "usuario")
+    @JsonManagedReference("usuario-carnet")
+    private Carnet carnet;
 
     public Usuario() {
     }
