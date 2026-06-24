@@ -49,7 +49,7 @@ public class Usuario {
     //Relacion N:N con libros
     @ManyToMany
     @JoinTable(
-            name = "usuario_libro",
+            name = "prestamo",
             joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "libro_id")
     )
