@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -49,6 +50,15 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     @JsonManagedReference("usuario-libro")
     private List<Libro> libro;
+
+    //Relacion N:N con libros
+    @ManyToMany
+    @JoinTable(
+            name = "usuario_libro",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "libro_id")
+    )
+    private List<Libro> libros = new ArrayList<>();
 
 
     public Usuario() {

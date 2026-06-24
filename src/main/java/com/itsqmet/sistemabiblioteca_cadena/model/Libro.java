@@ -49,6 +49,9 @@ public class Libro {
     @ManyToMany(mappedBy = "libros")
     private List<Autor> autores = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "libros")
+    private List<Usuario> usuarios = new ArrayList<>();
+
 //hola
     public Libro() {
     }
