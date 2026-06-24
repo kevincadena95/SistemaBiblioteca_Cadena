@@ -2,6 +2,7 @@ package com.itsqmet.sistemabiblioteca_cadena.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "carnets")
@@ -10,11 +11,18 @@ public class Carnet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "El número de carnet es obligatorio")
-    @Column(unique = true, nullable = false)
-    private String numero;
+    @NotBlank(message = "El campo cédula es obligatoria")
+    @Pattern(regexp = "\\d{10}", message = "La codigo debe tener 10 dígitos")
+    private String codigoCarnet;
 
-    private String anioVigencia;
+    @NotBlank(message = "La fecha de emisión es obligatoria")
+    @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "La fecha debe tener el formato yyyy-MM-dd")
+    private String fechaEmision;
+
+    @NotBlank(message = "La fecha de vencimiento es obligatoria")
+    @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "La fecha debe tener el formato yyyy-MM-dd")
+    private String fechaVencimiento;
+
 
     //uno a uno
     @OneToOne
@@ -26,11 +34,12 @@ public class Carnet {
     public Carnet() {
 
     }
-    public Carnet(Long id, String numero, String anioVigencia, Usuario usuario) {
+
+    public Carnet(Long id, String codigoCarnet, String fechaEmision, String fechaVencimiento) {
         this.id = id;
-        this.numero = numero;
-        this.anioVigencia = anioVigencia;
-        this.usuario = usuario;
+        this.codigoCarnet = codigoCarnet;
+        this.fechaEmision = fechaEmision;
+        this.fechaVencimiento = fechaVencimiento;
     }
 
     public Long getId() {
@@ -41,27 +50,27 @@ public class Carnet {
         this.id = id;
     }
 
-    public String getNumero() {
-        return numero;
+    public String getCodigoCarnet() {
+        return codigoCarnet;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setCodigoCarnet(String codigoCarnet) {
+        this.codigoCarnet = codigoCarnet;
     }
 
-    public String getAnioVigencia() {
-        return anioVigencia;
+    public String getFechaEmision() {
+        return fechaEmision;
     }
 
-    public void setAnioVigencia(String anioVigencia) {
-        this.anioVigencia = anioVigencia;
+    public void setFechaEmision(String fechaEmision) {
+        this.fechaEmision = fechaEmision;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getFechaVencimiento() {
+        return fechaVencimiento;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setFechaVencimiento(String fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
     }
 }
