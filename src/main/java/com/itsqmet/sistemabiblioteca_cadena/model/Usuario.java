@@ -1,5 +1,6 @@
 package com.itsqmet.sistemabiblioteca_cadena.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
