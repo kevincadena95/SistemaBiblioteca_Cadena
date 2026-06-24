@@ -1,7 +1,7 @@
 package com.itsqmet.sistemabiblioteca_cadena.service;
 
 import com.itsqmet.sistemabiblioteca_cadena.model.Usuario;
-import com.itsqmet.sistemabiblioteca_cadena.model.UsuarioRepository;
+import com.itsqmet.sistemabiblioteca_cadena.repository.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

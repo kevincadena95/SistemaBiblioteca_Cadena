@@ -3,6 +3,9 @@ package com.itsqmet.sistemabiblioteca_cadena.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
@@ -36,9 +39,17 @@ public class Usuario {
     @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "La fecha debe tener el formato yyyy-MM-dd")
     private String fechaRegistro;
 
+
+    // RELACION 1:1
     @OneToOne(mappedBy = "usuario")
     @JsonManagedReference("usuario-carnet")
     private Carnet carnet;
+
+    // RELACIÓN 1:N inverso
+    @OneToMany(mappedBy = "usuario")
+    @JsonManagedReference("usuario-libro")
+    private List<Libro> libro;
+
 
     public Usuario() {
     }

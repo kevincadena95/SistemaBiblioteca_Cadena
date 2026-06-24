@@ -1,7 +1,10 @@
 package com.itsqmet.sistemabiblioteca_cadena.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+
+import java.util.List;
 
 
 @Entity
@@ -37,6 +40,10 @@ public class Editorial {
     @NotBlank(message = "El campo representante no puede estar vacio")
     @Size(min = 2, max = 50, message = ("El representante no cumple con el rango de caracteres de 2-50"))
     private String representante;
+
+    @OneToMany(mappedBy = "editorial")
+    @JsonManagedReference("editorial-libros")
+    private List<Libro> libros;
 
     public Editorial() {
     }
