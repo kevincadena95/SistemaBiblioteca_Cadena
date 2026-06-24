@@ -3,6 +3,7 @@ package com.itsqmet.sistemabiblioteca_cadena.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import java.util.*;
 
 
 @Entity
@@ -44,6 +45,9 @@ public class Libro {
     @JoinColumn(name = "editorial_id")
     @JsonBackReference("editorial-libros")
     private Editorial editorial;
+
+    @ManyToMany(mappedBy = "libros")
+    private List<Autor> autores = new ArrayList<>();
 
 //hola
     public Libro() {

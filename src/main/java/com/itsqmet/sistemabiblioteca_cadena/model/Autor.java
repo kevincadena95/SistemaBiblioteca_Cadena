@@ -1,8 +1,10 @@
 package com.itsqmet.sistemabiblioteca_cadena.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import java.util.*;
 
 @Entity
 @Table(name = "autores")
@@ -26,6 +28,16 @@ public class Autor {
 
     @Size(max = 500, message = "La biografía corta no puede superar 500 caracteres")
     private String biografiaCorta;
+
+    @ManyToMany
+    @JoinTable(
+            name = "autor_libro",
+            joinColumns = @JoinColumn(name = "autor_id"),
+            inverseJoinColumns = @JoinColumn(name = "libro_id")
+    )
+    @JsonManagedReference("autor-libro")
+    private List<Libro> libros = new ArrayList<>();
+
 
     public Autor() {
     }
