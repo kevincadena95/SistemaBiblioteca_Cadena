@@ -46,11 +46,6 @@ public class Usuario {
     @JsonManagedReference("usuario-carnet")
     private Carnet carnet;
 
-    // RELACIÓN 1:N inverso
-    @OneToMany(mappedBy = "usuario")
-    @JsonManagedReference("usuario-libro")
-    private List<Libro> libro;
-
     //Relacion N:N con libros
     @ManyToMany
     @JoinTable(
@@ -58,6 +53,7 @@ public class Usuario {
             joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "libro_id")
     )
+    @JsonManagedReference("usuario-libro")
     private List<Libro> libros = new ArrayList<>();
 
 
