@@ -44,7 +44,7 @@ public class Libro {
 
     @ManyToOne
     @JoinColumn(name = "editorial_id")
-    @JsonBackReference("editorial-libros")
+    @JsonIgnoreProperties("libros")
     private Editorial editorial;
 
     @ManyToMany(mappedBy = "libros")
@@ -118,8 +118,6 @@ public class Libro {
         this.fechaPublicacion = fechaPublicacion;
     }
 
-
-
     public Double getPrecio() {
         return precio;
     }
@@ -134,5 +132,29 @@ public class Libro {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public Editorial getEditorial() {
+        return editorial;
+    }
+
+    public void setEditorial(Editorial editorial) {
+        this.editorial = editorial;
+    }
+
+    public List<Autor> getAutores() {
+        return autores;
+    }
+
+    public void setAutores(List<Autor> autores) {
+        this.autores = autores;
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 }

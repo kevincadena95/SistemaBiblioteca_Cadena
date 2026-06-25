@@ -90,4 +90,14 @@ public class Autor {
     public void setBiografiaCorta(String biografiaCorta) {
         this.biografiaCorta = biografiaCorta;
     }
+
+    public List<Libro> getLibros() {
+        return libros;
+    }
+
+    public void setLibros(List<Libro> libros) {
+        this.libros = libros;
+    }
 }
+
+

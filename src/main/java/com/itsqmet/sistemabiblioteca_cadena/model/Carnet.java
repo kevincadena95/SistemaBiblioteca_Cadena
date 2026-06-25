@@ -1,5 +1,6 @@
 package com.itsqmet.sistemabiblioteca_cadena.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -27,9 +28,8 @@ public class Carnet {
     //uno a uno
     @OneToOne
     @JoinColumn(name = "usuario_id", nullable = false)
-    @JsonBackReference("usuario-carnet")
-    private  Usuario usuario;
-
+    @JsonIgnoreProperties("carnet")
+    private Usuario usuario;
 
     public Carnet() {
 
@@ -72,5 +72,13 @@ public class Carnet {
 
     public void setFechaVencimiento(String fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

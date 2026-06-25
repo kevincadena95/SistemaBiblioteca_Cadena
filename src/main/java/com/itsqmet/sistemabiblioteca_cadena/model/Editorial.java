@@ -113,4 +113,12 @@ public class Editorial {
     public void setRepresentante(String representante) {
         this.representante = representante;
     }
+
+    public List<Libro> getLibros() {
+        return libros;
+    }
+
+    public void setLibros(List<Libro> libros) {
+        this.libros = libros;
+    }
 }
