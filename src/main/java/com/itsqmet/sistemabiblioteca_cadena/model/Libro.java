@@ -1,6 +1,7 @@
 package com.itsqmet.sistemabiblioteca_cadena.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.util.*;
@@ -47,9 +48,11 @@ public class Libro {
     private Editorial editorial;
 
     @ManyToMany(mappedBy = "libros")
+    @JsonIgnoreProperties("libros")
     private List<Autor> autores = new ArrayList<>();
 
     @ManyToMany(mappedBy = "libros")
+    @JsonIgnoreProperties("libros")
     private List<Usuario> usuarios = new ArrayList<>();
 
 //hola
