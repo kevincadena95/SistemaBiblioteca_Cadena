@@ -3,6 +3,7 @@ package com.itsqmet.sistemabiblioteca_cadena.service;
 import com.itsqmet.sistemabiblioteca_cadena.model.Usuario;
 import com.itsqmet.sistemabiblioteca_cadena.repository.UsuarioRepository;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,11 +28,18 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    @Transactional
     public boolean eliminar(Long id) {
-        if (usuarioRepository.existsById(id)) {
-            usuarioRepository.deleteById(id);
+        Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
+        if (usuarioOptional.isPresent()) {
+            Usuario usuario = usuarioOptional.get();
+            if (usuario.getLibros() != null) {
+                usuario.getLibros().clear();
+            }
+            usuarioRepository.delete(usuario);
             return true;
         }
+
         return false;
     }
 

@@ -43,8 +43,8 @@ public class Usuario {
 
 
     // RELACION 1:1
-    @OneToOne(mappedBy = "usuario")
-    @JsonManagedReference("usuario-carnet")
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("usuario")
     private Carnet carnet;
 
     //Relacion N:N con libros

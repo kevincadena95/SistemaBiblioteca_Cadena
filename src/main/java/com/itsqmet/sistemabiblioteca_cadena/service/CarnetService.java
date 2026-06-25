@@ -3,6 +3,7 @@ import com.itsqmet.sistemabiblioteca_cadena.model.Autor;
 import com.itsqmet.sistemabiblioteca_cadena.model.Carnet;
 import com.itsqmet.sistemabiblioteca_cadena.repository.CarnetRepository;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,9 +27,17 @@ public class CarnetService {
         return carnetRepository.save(carnet);
     }
 
+    @Transactional
     public boolean eliminar(Long id) {
-        if (carnetRepository.existsById(id)) {
-            carnetRepository.deleteById(id);
+
+        Optional<Carnet> carnetOptional = carnetRepository.findById(id);
+        if (carnetOptional.isPresent()) {
+            Carnet carnet = carnetOptional.get();
+            if (carnet.getUsuario() != null) {
+                carnet.getUsuario().setCarnet(null);
+            }
+            carnetRepository.delete(carnet);
+
             return true;
         }
         return false;
