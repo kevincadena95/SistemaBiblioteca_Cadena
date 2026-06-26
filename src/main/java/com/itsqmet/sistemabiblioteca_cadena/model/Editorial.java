@@ -1,5 +1,6 @@
 package com.itsqmet.sistemabiblioteca_cadena.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -42,7 +43,7 @@ public class Editorial {
     private String representante;
 
     @OneToMany(mappedBy = "editorial")
-    @JsonManagedReference("editorial-libros")
+    @JsonIgnoreProperties("editorial")
     private List<Libro> libros;
 
     public Editorial() {
